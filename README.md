@@ -7,6 +7,9 @@ O desafio envolveu o desenvolvimento de um sistema completo para a gestão de no
 Para executar é necessario o docker instalado.
 
 Passo 1: GIT CLONE
+
 Passo 2: acesse o diretorio que contem o docker compose
+
 Passo 3: docker compose up
+
 Passo 4: acesse o localhost:3000
