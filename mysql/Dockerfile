@@ -1,0 +1,4 @@
+FROM mysql:8.0.34-debian
+ENV MYSQL_ROOT_PASSWORD=corelab123
+ENV MYSQL_DATABASE=corenotesdatabase
+EXPOSE 3306

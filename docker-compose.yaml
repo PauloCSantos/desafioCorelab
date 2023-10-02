@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  mysql:
+    container_name: desafiocorelab-mysql
+    build:
+      context: ./mysql/
+      dockerfile: Dockerfile
+    volumes:
+      - ./mysql/database:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    cap_add:
+      - SYS_NICE
+
+  frontend:
+    container_name: desafiocorelab-frontend
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+      args:
+        - NPM_INSTALL=true
+    ports:
+      - 3000:3000
+    networks:
+      - app-network
+    depends_on:
+      - mysql
+
+  backend:
+    container_name: desafiocorelab-backend
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+      args:
+        - NPM_INSTALL=true
+    environment:
+      MYSQL_HOST: "mysql"
+    ports:
+      - 3003:3003
+    depends_on:
+      - frontend
+    networks:
+      - app-network
+networks:
+  app-network:
